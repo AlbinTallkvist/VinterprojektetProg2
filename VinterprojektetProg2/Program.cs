@@ -13,7 +13,7 @@ float WalkSpeed = 2f;
 
 
 // ladda in texturer här - hitta bra textur för playable character på freda
-Texture2D PlayerModel = Raylib.LoadTexture("PlayableChar.png");
+Texture2D PlayerModel = Raylib.LoadTexture("TheBoy.png");
 Rectangle player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
 Color backgroundcolor = new Color(255, 255, 255, 255);
 
