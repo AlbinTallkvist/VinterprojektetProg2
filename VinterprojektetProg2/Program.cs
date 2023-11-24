@@ -1,73 +1,26 @@
 ﻿// Ide: Man är ett barn som måste städa ens hus genom gå i olika rum och plocka upp saker mm innan morsan kommer hem
 // Rum klass och subklasser varje rum, samma action varje rum? olika ctions?
-
-
-
 // Raylib inställningarna
 using Raylib_cs;
+
+Bathroom bathroom = new Bathroom();
+Bedroom bedroom = new Bedroom();
+Livingroom livingroom = new Livingroom();
 
 Raylib.InitWindow(1280, 800, "Untitled");
 Raylib.SetTargetFPS(60);
 string currentScene = "StartScreen";  
-float WalkSpeed = 2f;
 
 
 // ladda in texturer här - hitta bra textur för playable character på freda
-Texture2D PlayerModel = Raylib.LoadTexture("TheBoy.png");
-Rectangle player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
+//-Texture2D PlayerModel = Raylib.LoadTexture("TheBoy.png");
+///-Rectangle player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
 Color backgroundcolor = new Color(255, 255, 255, 255);
 
 
-
-
-
-// raylib grundläggande kod, bytta skit å controls osv
 while (Raylib.WindowShouldClose() == false)
 {
-
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
-    {
-      player.X += WalkSpeed;
-
-      if (player.X > Raylib.GetScreenWidth() - player.Width) 
-        {
-          player.X = Raylib.GetScreenWidth() - player.Width; 
-        }
-    }
-
-
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_A))
-    {
-      player.X -= WalkSpeed;
-
-      if (player.X < 0) 
-        {
-            player.X = 0;
-        }
-    }
-
-
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_S))
-    {
-      player.Y += WalkSpeed;
-
-      if (player.Y > Raylib.GetScreenHeight() - player.Height) 
-        {
-            player.Y = Raylib.GetScreenHeight() - player.Height; 
-        }
-    }
-
-
-    if (Raylib.IsKeyDown(KeyboardKey.KEY_W))
-  {
-    player.Y -= WalkSpeed;
-
-    if (player.Y < 0) 
-        {
-            player.Y = 0; 
-        }
-  }
-
+    using Character;
 
 
 
