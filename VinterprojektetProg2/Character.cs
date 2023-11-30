@@ -1,10 +1,20 @@
 using Raylib_cs;
 
-public class Character
+namespace CharacterMovement
 {
-    Texture2D PlayerModel = Raylib.LoadTexture("TheBoy.png");
-    float WalkSpeed = 2f;
-    Rectangle player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
+    public class Character
+    {
+        public Texture2D PlayerModel;
+        float WalkSpeed = 6f;
+        public Rectangle player;
+
+        public Character(Texture2D playerModel)
+        {
+            PlayerModel = playerModel;
+            player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
+        }
+
+
 
 
 
@@ -50,4 +60,5 @@ public class Character
             }
         }
     }
+}
 }

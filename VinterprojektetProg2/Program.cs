@@ -1,31 +1,25 @@
-﻿// Ide: Man är ett barn som måste städa ens hus genom gå i olika rum och plocka upp saker mm innan morsan kommer hem
-// Rum klass och subklasser varje rum, samma action varje rum? olika ctions?
-// Raylib inställningarna
-using Raylib_cs;
+﻿using Raylib_cs;
+using CharacterMovement;
 
 Bathroom bathroom = new Bathroom();
 Bedroom bedroom = new Bedroom();
 Livingroom livingroom = new Livingroom();
 
-Raylib.InitWindow(1280, 800, "Untitled");
+Raylib.InitWindow(1280, 800, "Hurry");
 Raylib.SetTargetFPS(60);
-string currentScene = "StartScreen";  
-
-
-// ladda in texturer här - hitta bra textur för playable character på freda
-//-Texture2D PlayerModel = Raylib.LoadTexture("TheBoy.png");
-///-Rectangle player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
+string currentScene = "StartScreen";
+Texture2D playerModel = Raylib.LoadTexture("TheBoy.png");
+Character character = new Character(playerModel); 
 Color backgroundcolor = new Color(255, 255, 255, 255);
+Texture2D backgroundImage = Raylib.LoadTexture("Backgroundd.png");
+Rectangle sceneChangeBedroom = new Rectangle(1075, 60, 100, 100);
+Rectangle sceneChangeBathroom = new Rectangle(800, 30, 100, 100);
 
+
+// --------------------------------------------------------------------------------
 
 while (Raylib.WindowShouldClose() == false)
 {
-    using Character;
-
-
-
-
-
   if (currentScene == "StartScreen")
   {
     if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
@@ -35,27 +29,39 @@ while (Raylib.WindowShouldClose() == false)
   }
 
 
+  if (Raylib.CheckCollisionRecs(character.player, sceneChangeBedroom))
+  {
+    currentScene = "bedroomscene";
+  }
+
+  if (Raylib.CheckCollisionRecs(character.player, sceneChangeBathroom))
+  {
+    currentScene = "bathroomscene";
+  }
 
 
 
-
-// rita
 
     Raylib.BeginDrawing();
     Raylib.ClearBackground(backgroundcolor);
 
-
     if (currentScene == "StartRoom")
     {
-        Raylib.DrawText("Test", 280, 300, 50, Color.BLACK);
-        Raylib.DrawTexture(PlayerModel, (int) player.X, (int) player.Y, backgroundcolor);
+       character.Update();
+
+        Raylib.DrawTexture(backgroundImage, 0, 0, Color.WHITE);
+        Raylib.DrawTexture(character.PlayerModel, (int)character.player.X, (int)character.player.Y, backgroundcolor);
+        Raylib.DrawRectangleRec(sceneChangeBedroom, Color.BLACK);
+        Raylib.DrawRectangleRec(sceneChangeBathroom, Color.BLACK);
+
+
 
 
     }
 
       else if (currentScene == "StartScreen")
     {
-        Raylib.DrawText("Welcome", 280, 380, 50, Color.BLACK);
+        Raylib.DrawText("Welcome", 560, 420, 40, Color.BLACK);
         Raylib.DrawText("\nENTER to begin", 515, 420, 32, Color.BLACK);
 
     } 
