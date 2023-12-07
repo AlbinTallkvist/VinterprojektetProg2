@@ -1,6 +1,6 @@
 using Raylib_cs;
 
-namespace CharacterMovement
+namespace Vinterprojektet
 {
     public class Character
     {
@@ -14,8 +14,20 @@ namespace CharacterMovement
             player = new Rectangle(415, 60, PlayerModel.Width, PlayerModel.Height);
         }
 
+            public void ResetCharacterPosition()
+        {
+            player.X = Raylib.GetScreenWidth() / 2 - PlayerModel.Width / 2;
+            player.Y = Raylib.GetScreenHeight() / 2 - PlayerModel.Height / 2;
+        }
 
-    
+        
+
+        public string currentScene;
+        public Color backgroundcolor = new Color(255, 255, 255, 255);
+
+        
+
+
 
 
     public void Update()
