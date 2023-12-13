@@ -6,7 +6,7 @@ Bedroom bedroom = new Bedroom();
 Livingroom livingroom = new Livingroom();
 
 Raylib.InitWindow(1280, 800, "Hurry");
-Raylib.SetTargetFPS(60);
+Raylib.SetTargetFPS(60); 
 string currentScene = "StartScreen";
 Texture2D playerModel = Raylib.LoadTexture("TheBoy.png");
 Character character = new Character(playerModel);
@@ -24,7 +24,7 @@ while (Raylib.WindowShouldClose() == false)
     {
         if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
-            currentScene = "StartRoom";
+            currentScene = "StartRoom"; 
         }
 
         Raylib.DrawText("Welcome", 560, 420, 40, Color.BLACK);
@@ -33,19 +33,31 @@ while (Raylib.WindowShouldClose() == false)
     else if (currentScene == "StartRoom")
     {
         livingroom.DrawLivingroomScene(character, backgroundImage, doorImage);
+        if (character.currentScene == "bedroomscene")
+        {
+            currentScene = "bedroomscene";
+        }
+        if (character.currentScene == "bathroomscene")
+        {
+            currentScene = "bathroomscene";
+        }
     }
     else if (currentScene == "bedroomscene")
     {
         bedroom.DrawBedroomScene(character, backgroundImage, doorImage);
+        if (character.currentScene == "StartRoom")
+        {
+            currentScene = "StartRoom";
+        }
     }
-
     else if (currentScene == "bathroomscene")
     {
         bathroom.DrawBathroomScene(character, backgroundImage, doorImage);
+        if (character.currentScene == "StartRoom")
+        {
+            currentScene = "StartRoom";
+        }
     }
-     
-    
-
     Raylib.EndDrawing();
 }
 
