@@ -31,7 +31,7 @@ namespace Vinterprojektet
 
         public bool AllaCollected(Character character)
         {
-            return character.collectedKeys >= 9;
+            return character.collectedKeys >= 6;
         }
 
         public void DrawKeyRectangles(Texture2D keySprite)

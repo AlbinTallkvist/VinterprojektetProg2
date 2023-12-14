@@ -10,7 +10,7 @@ namespace Vinterprojektet
         private Livingroom livingroom; 
 
         
-        private int[] keyRectInitialPositions = new int[] { 100, 320, 300, 320, 500, 320 };
+        private int[] keyRectInitialPositions = new int[] { 1150, 100, 250, 700,  };
 
         public Livingroom()
         {

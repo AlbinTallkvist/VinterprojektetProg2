@@ -27,7 +27,7 @@ while (Raylib.WindowShouldClose() == false)
     {
         if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
-            currentScene = "bathroomscene"; 
+            currentScene = "StartRoom"; 
             character.ResetCharacterPosition();
 
         }
@@ -64,11 +64,3 @@ while (Raylib.WindowShouldClose() == false)
     }
     Raylib.EndDrawing();
 }
-
-
-
-
-
-
-// för senare
-// bool = kläder etc
