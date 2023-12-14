@@ -21,9 +21,8 @@ namespace Vinterprojektet
         {
             Rectangle sceneChangeBedroom = new Rectangle(1180, 320, doorImage.Width, doorImage.Height);
             Rectangle sceneChangeBathroom = new Rectangle(0, 320, doorImage.Width, doorImage.Height);
-            Texture2D keySprite = Raylib.LoadTexture("key.png");
+            Texture2D keySprite = Raylib.LoadTexture("trashbag.png");
 
-// DENNA DEL ÄR PICKUP IRMGFIREMGOREJGIOERJGIERJGOIERJGRIOEJGOIERJGIOERJGIERJGOIRE
             pickup.CollectCollisionen(character);
             if (pickup.AllaCollected(character))
             {

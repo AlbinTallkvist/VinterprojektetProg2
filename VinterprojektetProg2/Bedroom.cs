@@ -4,24 +4,24 @@ namespace Vinterprojektet
 {
     public class Bedroom
     {
-        private Pickup pickup;
         private Livingroom livingroom; 
+        private TrashTwo trashTwo;  
+        private int[] trashTwoInitialPositions = new int[] { 100, 100, 900, 20, 1100, 700  };
+
 
     
-        private int[] keyRectInitialPositions = new int[] { 100, 100, 900, 20, 1100, 700 };
-
         public Bedroom()
         {
-            pickup = new Pickup(keyRectInitialPositions);
+            trashTwo = new TrashTwo(trashTwoInitialPositions);
         }
 
         public void DrawBedroomScene(Character character, Texture2D bedroomImage, Texture2D doorImage)
         {
             Rectangle sceneChangeLivingroom = new Rectangle(0, 320, doorImage.Width, doorImage.Height);
-            Texture2D keySprite = Raylib.LoadTexture("key.png");
+            Texture2D keySprite = Raylib.LoadTexture("clothespile.png");
             
-            pickup.CollectCollisionen(character);
-            if (pickup.AllaCollected(character))
+            trashTwo.CollectCollisionen(character);
+            if (trashTwo.AllaCollected(character))
             {
                 System.Environment.Exit(0);
             }
@@ -41,7 +41,7 @@ namespace Vinterprojektet
             Raylib.DrawTexture(character.PlayerModel, (int)character.player.X, (int)character.player.Y, character.backgroundcolor);
             Raylib.DrawRectangleRec(sceneChangeLivingroom, Color.BROWN);
             Raylib.DrawTexture(doorImage, (int)sceneChangeLivingroom.X, (int)sceneChangeLivingroom.Y, Color.WHITE);
-            pickup.DrawKeyRectangles(keySprite);
+            trashTwo.DrawKeyRectangles(keySprite);
             }
             
         }

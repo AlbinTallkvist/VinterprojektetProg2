@@ -64,3 +64,6 @@ while (Raylib.WindowShouldClose() == false)
     }
     Raylib.EndDrawing();
 }
+
+// kom ihåg du e dumm i bollen å använder svenska här o engelska där bara vnänd 1 i slutändan 
+// fixa det!!! men på slutet för kommr fortsätta va dumm å göra de
