@@ -4,9 +4,11 @@ namespace Vinterprojektet
 {
     public class Character
     {
+
         public Texture2D PlayerModel;
         float WalkSpeed = 6f;
         public Rectangle player;
+        public int collectedKeys = 0;
 
         public Character(Texture2D playerModel)
         {

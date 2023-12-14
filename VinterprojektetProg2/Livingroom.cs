@@ -6,39 +6,29 @@ namespace Vinterprojektet
     {
         private Bedroom bedroom;
         private Bathroom bathroom;        
-        private int collectedKeys = 0; 
+        private Pickup pickup;
+        private Livingroom livingroom; 
+
         
-        private Rectangle[] keyRects = new Rectangle[]
+        private int[] keyRectInitialPositions = new int[] { 100, 320, 300, 320, 500, 320 };
+
+        public Livingroom()
         {
-            new Rectangle(100, 320, 50, 50), 
-            new Rectangle(300, 320, 50, 50), 
-            new Rectangle(500, 320, 50, 50)  
-        };
+            pickup = new Pickup(keyRectInitialPositions);
+        }
 
-
-
-        public void DrawLivingroomScene(Character character, Texture2D backgroundImage, Texture2D doorImage)
+        public void DrawLivingroomScene(Character character, Texture2D livingroomImage, Texture2D doorImage)
         {
             Rectangle sceneChangeBedroom = new Rectangle(1180, 320, doorImage.Width, doorImage.Height);
             Rectangle sceneChangeBathroom = new Rectangle(0, 320, doorImage.Width, doorImage.Height);
             Texture2D keySprite = Raylib.LoadTexture("key.png");
 
-            
-            for (int i = 0; i < keyRects.Length; i++)
+// DENNA DEL ÄR PICKUP IRMGFIREMGOREJGIOERJGIERJGOIERJGRIOEJGOIERJGIOERJGIERJGOIRE
+            pickup.CollectCollisionen(character);
+            if (pickup.AllaCollected(character))
             {
-                if (Raylib.CheckCollisionRecs(character.player, keyRects[i]))
-                {
-                    collectedKeys++;
-                    keyRects[i].X = -10000;
-                    keyRects[i].Y = -10000;
-                }
+                System.Environment.Exit(0);
             }
-
-            if (collectedKeys >= 3) 
-            {
-                System.Environment.Exit(0); 
-            }
-
 
 
             if (Raylib.CheckCollisionRecs(character.player, sceneChangeBedroom))
@@ -56,17 +46,13 @@ namespace Vinterprojektet
             else 
             {
             character.Update();
-            Raylib.DrawTexture(backgroundImage, 0, 0, Color.WHITE);
+            Raylib.DrawTexture(livingroomImage, 0, 0, Color.WHITE);
             Raylib.DrawTexture(character.PlayerModel, (int)character.player.X, (int)character.player.Y, character.backgroundcolor);
             Raylib.DrawRectangleRec(sceneChangeBedroom, Color.BROWN);
-            Raylib.DrawText("Living room", 515, 420, 32, Color.BLACK);
             Raylib.DrawRectangleRec(sceneChangeBathroom, Color.BROWN);
             Raylib.DrawTexture(doorImage, (int)sceneChangeBedroom.X, (int)sceneChangeBedroom.Y, Color.WHITE);
             Raylib.DrawTexture(doorImage, (int)sceneChangeBathroom.X, (int)sceneChangeBathroom.Y, Color.WHITE);
-                foreach (Rectangle keyRect in keyRects)
-                {
-                    Raylib.DrawTexture(keySprite, (int)keyRect.X, (int)keyRect.Y, Color.WHITE);
-                }
+            pickup.DrawKeyRectangles(keySprite);
             }
         }
     }

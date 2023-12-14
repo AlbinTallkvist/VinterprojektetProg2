@@ -5,13 +5,16 @@ Bathroom bathroom = new Bathroom();
 Bedroom bedroom = new Bedroom();
 Livingroom livingroom = new Livingroom();
 
-Raylib.InitWindow(1280, 800, "Hurry");
+Raylib.InitWindow(1280, 800, "CleanUp");
 Raylib.SetTargetFPS(60); 
 string currentScene = "StartScreen";
 Texture2D playerModel = Raylib.LoadTexture("TheBoy.png");
 Character character = new Character(playerModel);
 Color backgroundcolor = new Color(255, 255, 255, 255);
-Texture2D backgroundImage = Raylib.LoadTexture("Backgroundd.png");
+Texture2D bedroomImage = Raylib.LoadTexture("BedroomBackground.png");
+Texture2D bathroomImage = Raylib.LoadTexture("BathroomBackground.png");
+Texture2D livingroomImage = Raylib.LoadTexture("LivingroomBackground.png");
+Texture2D startMenu = Raylib.LoadTexture("StartMenu.png");
 Texture2D doorImage = Raylib.LoadTexture("doorone.png");
 
 
@@ -24,15 +27,16 @@ while (Raylib.WindowShouldClose() == false)
     {
         if (Raylib.IsKeyDown(KeyboardKey.KEY_ENTER))
         {
-            currentScene = "StartRoom"; 
+            currentScene = "bathroomscene"; 
+            character.ResetCharacterPosition();
+
         }
 
-        Raylib.DrawText("Welcome", 560, 420, 40, Color.BLACK);
-        Raylib.DrawText("\nENTER to begin", 515, 420, 32, Color.BLACK);
+        Raylib.DrawTexture(startMenu, 0, 0, Color.WHITE);
     }
     else if (currentScene == "StartRoom")
     {
-        livingroom.DrawLivingroomScene(character, backgroundImage, doorImage);
+        livingroom.DrawLivingroomScene(character, livingroomImage, doorImage);
         if (character.currentScene == "bedroomscene")
         {
             currentScene = "bedroomscene";
@@ -44,7 +48,7 @@ while (Raylib.WindowShouldClose() == false)
     }
     else if (currentScene == "bedroomscene")
     {
-        bedroom.DrawBedroomScene(character, backgroundImage, doorImage);
+        bedroom.DrawBedroomScene(character, bedroomImage, doorImage);
         if (character.currentScene == "StartRoom")
         {
             currentScene = "StartRoom";
@@ -52,7 +56,7 @@ while (Raylib.WindowShouldClose() == false)
     }
     else if (currentScene == "bathroomscene")
     {
-        bathroom.DrawBathroomScene(character, backgroundImage, doorImage);
+        bathroom.DrawBathroomScene(character, bathroomImage, doorImage);
         if (character.currentScene == "StartRoom")
         {
             currentScene = "StartRoom";
