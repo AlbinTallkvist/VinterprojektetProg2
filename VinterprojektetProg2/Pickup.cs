@@ -5,15 +5,17 @@ namespace Vinterprojektet
     public class Pickup
     {
         // privat array av rektanglar  
+        // lagrar & hantera info om positionerna och storlekarna för collectiblesn i spelet
         private Rectangle[] keyRects;
 
         // Skapar & Initierar arrayn av rektanglar (keyrects) med positionerna som väljs i rum-klass
         public Pickup(int[] initialPositions)
         {
-            // Skapar array av rektanglar (keyrects) 
+            // Skapar array av rektanglar (keyrects), ".length" är positionerna för nycklar utifrån antalet koordinater i arrayn
             keyRects = new Rectangle[initialPositions.Length / 2];
 
             // Skapar rektanglnarna i array'n, genom använda positionen som väljs i rum-klass och varje rektangel har storlek 50x50
+            // för varje "initialposition" skapas en rektangeln, de lagras sen i "keyrects" för användas nedre \/
             for (int i = 0; i < initialPositions.Length; i += 2)
             {
                 keyRects[i / 2] = new Rectangle(initialPositions[i], initialPositions[i + 1], 50, 50);
